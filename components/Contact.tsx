@@ -11,6 +11,11 @@ const socialIcons = {
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+  contact.email
+)}&su=${encodeURIComponent("Consulta desde la web de Menatech")}&body=${encodeURIComponent(
+  "Hola Menatech, quiero agendar una conversacion para conversar sobre un proyecto."
+)}`;
 
 export function Contact() {
   const [feedback, setFeedback] = useState("");
@@ -130,7 +135,9 @@ export function Contact() {
                 {contact.whatsappLabel}
               </a>
               <a
-                href={`mailto:${contact.email}`}
+                href={gmailComposeUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="flex items-center gap-3 rounded-md border border-white/12 bg-white/6 px-4 py-3 text-sm font-semibold text-white transition hover:border-blue-300/35 hover:bg-white/10"
               >
                 <Mail size={18} />
