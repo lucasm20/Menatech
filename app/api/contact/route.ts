@@ -19,6 +19,7 @@ const escapeHtml = (value: string) =>
     .replace(/'/g, "&#039;");
 
 const normalize = (value: unknown) => (typeof value === "string" ? value.trim() : "");
+const normalizeHeader = (value: string) => value.replace(/[\r\n]+/g, " ").trim();
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
@@ -83,14 +84,23 @@ export async function POST(request: Request) {
     }
   });
 
+  const customerName = normalizeHeader(name);
+  const projectName = normalizeHeader(project);
+
   try {
     await transporter.sendMail({
-      from: `"Mena Tech Web" <${emailUser}>`,
+      from: {
+        name: `${customerName} • Mena Tech`,
+        address: emailUser
+      },
       to: contactTo,
-      replyTo: email,
-      subject: `Nueva solicitud: ${project}`,
+      replyTo: {
+        name: customerName,
+        address: email
+      },
+      subject: `Nueva solicitud de ${customerName} — ${projectName}`,
       text: [
-        "Nueva solicitud desde la web de Mena Tech",
+        "Nueva consulta de cliente desde la web de Mena Tech",
         "",
         `Nombre y apellido: ${name}`,
         `Email: ${email}`,
@@ -101,7 +111,7 @@ export async function POST(request: Request) {
       ].join("\n"),
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111827">
-          <h2>Nueva solicitud desde la web de Mena Tech</h2>
+          <h2>Nueva consulta de cliente desde la web de Mena Tech</h2>
           <p><strong>Nombre y apellido:</strong> ${escapeHtml(name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           <p><strong>Tipo de proyecto:</strong> ${escapeHtml(project)}</p>
