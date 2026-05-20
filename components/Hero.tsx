@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Layers3, MessageCircle, ShieldCheck, Sparkles, Zap } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
 
 const metrics = [
   { label: "Performance", value: "98" },
@@ -46,7 +45,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.16, ease: "easeOut" }}
             className="mt-7 max-w-2xl text-lg leading-8 text-white/66 md:text-xl"
           >
-            Desarrollo web, sistemas personalizados y tecnología inteligente para negocios.
+            Desarrollo web, sistemas personalizados y tecnologia inteligente para negocios.
           </motion.p>
 
           <motion.div
@@ -93,7 +92,7 @@ export function Hero() {
           initial={{ opacity: 0, x: 32, scale: 0.97 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.16, ease: "easeOut" }}
-          className="relative"
+          className="relative mx-auto w-full max-w-[430px] lg:mx-0 lg:justify-self-end"
         >
           <div className="absolute inset-0 -z-10 rounded-lg bg-blue-600/20 blur-3xl" />
           <div className="overflow-hidden rounded-lg border border-white/12 bg-panel-shine shadow-2xl shadow-blue-950/30 backdrop-blur-2xl">
@@ -103,79 +102,21 @@ export function Hero() {
                 <span className="size-2.5 rounded-full bg-white/35" />
                 <span className="size-2.5 rounded-full bg-white/20" />
               </div>
-              <span className="text-xs font-medium text-white/45">mena.tech/workspace</span>
+              <span className="text-xs font-medium text-white/45">mena.tech/brand</span>
             </div>
 
-            <div className="p-5 sm:p-6">
-              <div className="mb-5 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/menatech-logo.png"
-                    alt="Mena Tech"
-                    width={48}
-                    height={48}
-                    className="size-12 rounded-md border border-blue-300/25 object-cover"
-                  />
-                  <div>
-                    <p className="text-sm font-semibold text-white">Mena Intelligence Suite</p>
-                    <p className="text-xs text-white/45">Product delivery system</p>
-                  </div>
-                </div>
-                <div className="rounded-md border border-blue-300/24 bg-blue-500/12 px-3 py-1 text-xs font-medium text-blue-100">
-                  Live
-                </div>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-3">
-                {[
-                  {
-                    icon: Zap,
-                    title: "Automatización",
-                    description: "Procesos inteligentes"
-                  },
-                  {
-                    icon: ShieldCheck,
-                    title: "Uptime",
-                    description: "99.9% disponibilidad"
-                  },
-                  {
-                    icon: Layers3,
-                    title: "Arquitectura",
-                    description: "Modular y escalable"
-                  }
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-md border border-white/10 bg-black/24 p-4 transition hover:border-blue-300/24 hover:bg-black/30"
-                  >
-                    <item.icon size={18} className="text-blue-300" />
-                    <p className="mt-4 text-sm font-semibold text-white">{item.title}</p>
-                    <p className="mt-1 text-xs leading-5 text-white/45">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 rounded-md border border-white/10 bg-black/28 p-4">
-                <div className="mb-4 flex items-center justify-between">
-                  <p className="text-sm font-medium text-white">Flujo de entrega</p>
-                  <p className="text-xs text-blue-200">Optimizado</p>
-                </div>
-                <div className="space-y-3">
-                  {["Discovery", "UI System", "Backend API", "Vercel Deploy"].map((step, index) => (
-                    <div key={step} className="grid grid-cols-[88px_1fr] items-center gap-3">
-                      <span className="text-xs text-white/45">{step}</span>
-                      <span className="h-2 overflow-hidden rounded-md bg-white/8">
-                        <motion.span
-                          initial={{ width: 0 }}
-                          animate={{ width: `${58 + index * 11}%` }}
-                          transition={{ duration: 0.9, delay: 0.45 + index * 0.08 }}
-                          className="block h-full rounded-md bg-gradient-to-r from-blue-600 to-blue-300"
-                        />
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="bg-black">
+              <video
+                className="aspect-[9/16] w-full bg-black object-contain"
+                src="/primer-brand.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                preload="metadata"
+                aria-label="Video de marca de Mena Tech"
+              />
             </div>
           </div>
         </motion.div>
